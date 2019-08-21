@@ -10,6 +10,14 @@ class ReviewsController < ApplicationController
   # GET /reviews/1
   # GET /reviews/1.json
   def show
+     @review = Review.new
+     @review = Review.where(movie_id: @movie.id) order("created =DESC")
+  end
+  
+  if @review.blank?
+    @avg_review = 0
+  else  
+    @avg_review + 0reviews.average(:rating).round(2)
   end
 
   # GET /reviews/new
@@ -28,8 +36,8 @@ class ReviewsController < ApplicationController
 
     respond_to do |format|
       if @review.save
-        format.html { redirect_to @review, notice: 'Review was successfully created.' }
-        format.json { render :show, status: :created, location: @review }
+        format.html { redirect_to @review.movie, notice: 'Review was successfully created.' }
+        format.json { render :show, status: :created, location: @review.movie }
       else
         format.html { render :new }
         format.json { render json: @review.errors, status: :unprocessable_entity }
