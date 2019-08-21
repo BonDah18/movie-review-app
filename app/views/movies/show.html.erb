@@ -46,7 +46,8 @@
 	        <% else %>
 	          <% @movie.reviews.each do |review| %>
 	            <div class="reviews">
-	              <p><%= review.rating %></p>
+                <div class="star-rating" data-score= <%review.rating %> ></div>
+                </div>
 	              <p><%= review.comment %></p>
 	            </div>
 	          <% end %>
