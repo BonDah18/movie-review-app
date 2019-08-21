@@ -44,9 +44,9 @@
 	          <h3>No reviews just yet, would you like to add the first!</h3>
 	          <%#= link_to "Write Review", new_movie_review_path(@movie), class: "btn btn-danger" %>
 	        <% else %>
-	          <% @movie.reviews.each do |review| %>
+	          <% @reviews.each do |review| %>
 	            <div class="reviews">
-                <div class="star-rating" data-score= <%review.rating %> ></div>
+                <div id="star-rating" data-score= <%review.rating %> ></div>
                 </div>
 	              <p><%= review.comment %></p>
 	            </div>
