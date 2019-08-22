@@ -1,5 +1,6 @@
 class ReviewsController < ApplicationController
   before_action :set_review, only: [:show, :edit, :update, :destroy]
+    before_action :authenticate_user!, except: [:index, :show]
 
   # GET /reviews
   # GET /reviews.json
@@ -10,14 +11,6 @@ class ReviewsController < ApplicationController
   # GET /reviews/1
   # GET /reviews/1.json
   def show
-     @review = Review.new
-     @review = Review.where(movie_id: @movie.id) order("created =DESC")
-  end
-  
-  if @review.blank?
-    @avg_review = 0
-  else  
-    @avg_review + 0reviews.average(:rating).round(2)
   end
 
   # GET /reviews/new
